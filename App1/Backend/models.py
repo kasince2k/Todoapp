@@ -11,7 +11,8 @@ class User(db.Model):
     __tablename__='users'
     #__table_args__=tuple(db.UniqueContraint('id','username',name='my_2uniq'))
 
-    id = db.Column(db.String(), primary_key=True,unique=True)
+    id = db.Column(db.String(), primary_key=True)
+    api_key = db.Column(db.String(), primary_key=True)
     username = db.Column(db.String(), primary_key=True)
     first_name = db.Column(db.String())
     last_name = db.Column(db.String())
@@ -20,6 +21,7 @@ class User(db.Model):
 
     def __init__(self,id,username,first_name,last_name,password,emailadress):
         self.id= id
+        self.api_key=api_key
         self.username=username
         self.first_name=first_name
         self.last_name=last_name
@@ -32,6 +34,7 @@ class User(db.Model):
     def serialize(self):
         return{
             'id' : self.id,
+            'api_key' : self.api_key,
             'username' : self.username,
             'first_name' : self.first_name,
             'last_name' : self.last_name,
